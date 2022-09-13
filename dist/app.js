@@ -40,7 +40,7 @@ app.get('/score', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     //スコア取得(降順)
     const scores = yield prisma.score_ranking.findMany({
         orderBy: {
-            score: "desc",
+            score: "asc",
         },
     });
     if (scores.length <= 0) {

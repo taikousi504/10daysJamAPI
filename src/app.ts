@@ -34,7 +34,7 @@ app.get('/score', async (req, res) => {
     //スコア取得(降順)
     const scores = await prisma.score_ranking.findMany({
         orderBy: {
-            score: "desc",
+            score: "asc",
         },
     });
 
