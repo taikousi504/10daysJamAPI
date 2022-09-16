@@ -37,10 +37,23 @@ app.get('/', (req, res) => {
 });
 //スコア一覧取得
 app.get('/score', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    //スコア取得(降順)
+    //スコア取得(スコア昇順)
     const scores = yield prisma.score_ranking.findMany({
         orderBy: {
             score: "asc",
+        },
+    });
+    if (scores.length <= 0) {
+        return res.json({});
+    }
+    return res.json(scores);
+}));
+//スコア一覧取得
+app.get('/score2', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    //スコア取得(id昇順)
+    const scores = yield prisma.score_ranking.findMany({
+        orderBy: {
+            ID: "asc",
         },
     });
     if (scores.length <= 0) {
